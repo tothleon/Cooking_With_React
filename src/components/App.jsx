@@ -14,6 +14,7 @@ function App() {
   const [selectedRecipeId, setSelectedRecipeId] = useState()
   const [recipes, setRecipes] = useState(sampleRecipes)
   const [searchedRecipes, setSearchedRecipes] = useState(recipes)
+  const [searchQuery, setSearchQuery] = useState()
   //activly slected recipe
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
@@ -24,15 +25,23 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
-    setSearchedRecipes(recipes)
-  }, [recipes])
+    handleSearch(searchQuery)
+  }, [recipes, searchQuery])
+
+  useEffect(() => {
+    handleSearch(searchQuery)
+  }, [searchQuery])
 
   const recipeContextValue = {
     handleRecipeAdd,
     handleRecipeDelete,
     handleRecipeSelect,
     handleRecipeChange,
-    handleSearch
+    handleQuery
+  }
+
+  function handleQuery(inputQuery) {
+    setSearchQuery(inputQuery)
   }
 
   function handleRecipeSelect(id) {
@@ -54,7 +63,6 @@ function App() {
     }
     setSelectedRecipeId(newRecipe.id)
     setRecipes([...recipes, newRecipe])
-    setSearchedRecipes(recipes)
   }
 
   function handleRecipeChange(id, recipe) {
