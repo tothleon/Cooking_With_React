@@ -25,12 +25,28 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
+    function handleSearch(query) {
+      if (query) {
+        setSearchedRecipes(recipes.filter((recipe) => 
+          recipe.name.toLowerCase().includes(query.toLowerCase())))  
+      } else {
+        setSearchedRecipes(recipes)
+      }
+    }
     handleSearch(searchQuery)
   }, [recipes, searchQuery])
 
   useEffect(() => {
+    function handleSearch(query) {
+      if (query) {
+        setSearchedRecipes(recipes.filter((recipe) => 
+          recipe.name.toLowerCase().includes(query.toLowerCase())))  
+      } else {
+        setSearchedRecipes(recipes)
+      }
+    }
     handleSearch(searchQuery)
-  }, [searchQuery])
+  }, [searchQuery, recipes])
 
   const recipeContextValue = {
     handleRecipeAdd,
@@ -79,14 +95,14 @@ function App() {
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
 
-  function handleSearch(query) {
-    if (query) {
-      setSearchedRecipes(recipes.filter((recipe) => 
-        recipe.name.toLowerCase().includes(query.toLowerCase())))  
-    } else {
-      setSearchedRecipes(recipes)
-    }
-  }
+  // function handleSearch(query) {
+  //   if (query) {
+  //     setSearchedRecipes(recipes.filter((recipe) => 
+  //       recipe.name.toLowerCase().includes(query.toLowerCase())))  
+  //   } else {
+  //     setSearchedRecipes(recipes)
+  //   }
+  // }
 
   return (
     <RecipeContext.Provider value={recipeContextValue}>
