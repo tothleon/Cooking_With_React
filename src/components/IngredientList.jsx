@@ -9,7 +9,7 @@ export default function IngredientList({ ingredients }) {
 
   return (
     <div className='ingredient-grid'>
-    {ingredientElements}
+      {ingredientElements}
     </div>
   )
 }

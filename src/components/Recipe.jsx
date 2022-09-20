@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import IngredientList from './IngredientList'
+import AuthorsList from './AuthorsList'
 import { RecipeContext } from './App'
 
 export default function Recipe(props) {
@@ -13,6 +14,7 @@ export default function Recipe(props) {
     servings, 
     instructions,
     ingredients,
+    authors
     } = props
 
   return (
@@ -49,6 +51,12 @@ export default function Recipe(props) {
             <span className='recipe__lable'>Ingredients:</span>
             <div className='recipe__value recipe__value--indented'>
                 <IngredientList ingredients={ingredients}/>
+            </div>
+        </div>
+        <div className='recipe__row'>
+            <span className='recipe__lable'>Authors:</span>
+            <div className='recipe__value recipe__value--indented'>
+                <AuthorsList authors={authors}/>
             </div>
         </div>
     </div>

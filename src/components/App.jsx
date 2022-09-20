@@ -9,7 +9,7 @@ import SearchBar from "./SearchBar";
 export const RecipeContext = React.createContext()
 const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes'
 
-function App() {
+export default function App() {
   //active states
   const [selectedRecipeId, setSelectedRecipeId] = useState()
   const [recipes, setRecipes] = useState(sampleRecipes)
@@ -68,14 +68,22 @@ function App() {
     const newRecipe = {
       id: uuidv4(),
       name: "",
-      Servings: 1,
+      servings: 1,
       cookTime: "",
       instructions: "",
       ingredients: [
         {id: uuidv4(), 
         name: "", 
         amount: "" }
+      ],
+      authors:[
+        {
+          id: 1,
+          firstName: "Jhon",
+          lastName: "Wick"
+        }
       ]
+      
     }
     setSelectedRecipeId(newRecipe.id)
     setRecipes([...recipes, newRecipe])
@@ -94,15 +102,6 @@ function App() {
     }
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
-
-  // function handleSearch(query) {
-  //   if (query) {
-  //     setSearchedRecipes(recipes.filter((recipe) => 
-  //       recipe.name.toLowerCase().includes(query.toLowerCase())))  
-  //   } else {
-  //     setSearchedRecipes(recipes)
-  //   }
-  // }
 
   return (
     <RecipeContext.Provider value={recipeContextValue}>
@@ -132,6 +131,13 @@ const sampleRecipes = [
         name: "Salt",
         amount: "1 Table Spoon"
       }
+    ],
+    authors:[
+      {
+        id: 1,
+        firstName: "Jhon",
+        lastName: "Lennon"
+      }
     ]
   },
   {
@@ -151,9 +157,13 @@ const sampleRecipes = [
         name: "Paprika",
         amount: "2 Table Spoon"
       }
+    ],
+    authors:[
+      {
+        id: 1,
+        firstName: "Jhon",
+        lastName: "Wick"
+      }
     ]
   }
 ]
-
-
-export default App;
