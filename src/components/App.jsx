@@ -79,8 +79,8 @@ export default function App() {
       authors:[
         {
           id: 1,
-          firstName: "Jhon",
-          lastName: "Wick"
+          firstName: "",
+          lastName: ""
         }
       ]
       

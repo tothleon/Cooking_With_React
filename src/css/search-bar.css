@@ -5,6 +5,7 @@
     position: fixed;
     padding-bottom: 0.5rem;
     padding-top: 00.5rem;
+    z-index: 1;
 }
 
 .search_bar {
