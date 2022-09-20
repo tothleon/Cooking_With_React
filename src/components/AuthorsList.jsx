@@ -3,7 +3,8 @@ import Author from './Author'
 
 export default function AuthorList({ authors }) {
 
-  const authorsElement = authors.map(author => {
+  const authorsElement = authors?.map(author => {
+    console.log(authors)
       return <Author key={author.id} {...author}/>
   })
 
