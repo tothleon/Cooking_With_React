@@ -20,11 +20,17 @@ export default function App() {
 
   useEffect(() => {
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
-    if (recipeJSON != null) setRecipes(JSON.parse(recipeJSON))
+    if (recipeJSON != null) { 
+      const content =  JSON.parse(recipeJSON)
+      setRecipes(content)
+    }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
+    if (recipes !== sampleRecipes) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
+    }
+
     function handleSearch(query) {
       if (query) {
         setSearchedRecipes(recipes.filter((recipe) => 
